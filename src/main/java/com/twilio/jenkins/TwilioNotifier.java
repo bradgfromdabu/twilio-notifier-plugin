@@ -378,9 +378,13 @@ public class TwilioNotifier extends Notifier {
                 listener.getLogger().println("Not notifying: " + build.getDisplayName());
 
             }
-        } catch (final Exception t) {
+            } catch (final Exception t) {
+            if(t.toString().contains("AuthToken")){
+                listener.getLogger().println("Exception: There was an error with your authentication token, please check your configuration settings.");
+            } else {
             listener.getLogger().println("Exception " + t);
         }
+    }
 
         return true;
     }
